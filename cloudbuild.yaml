@@ -24,3 +24,6 @@ images:
 substitutions:
   _DISCORD_WEBHOOK_URL: '你的DiscordWebhookURL'
   _LINE_CHANNEL_ACCESS_TOKEN: '你的LineChannelAccessToken'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
