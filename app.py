@@ -23,9 +23,28 @@ def callback():
             msg = event["message"]
             if msg["type"] == "text":
                 user_id = event["source"].get("userId", "unknown")
+                display_name = get_user_display_name(user_id)
                 text = msg["text"]
-                send_to_discord(f"👤 `{user_id}`：{text}")
+                send_to_discord(f"👤 {display_name}：{text}")
     return "OK"
+
+# 快取 userId ➜ displayName
+user_cache = {}
+def get_user_display_name(user_id):
+    if user_id in user_cache:
+        return user_cache[user_id]
+
+    headers = {
+        "Authorization": f"Bearer {LINE_CHANNEL_ACCESS_TOKEN}"
+    }
+    url = f"https://api.line.me/v2/bot/profile/{user_id}"
+    resp = requests.get(url, headers=headers)
+    if resp.status_code == 200:
+        display_name = resp.json().get("displayName", user_id)
+        user_cache[user_id] = display_name
+        return display_name
+    else:
+        return user_id  # fallback
 
 def send_to_discord(content):
     if DISCORD_WEBHOOK_URL:
