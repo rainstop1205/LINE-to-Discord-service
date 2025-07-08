@@ -79,9 +79,17 @@ def download_line_image(message_id):
         print(f"⚠️ Failed to download image: {response.status_code}")
         return None
 
+MAX_DISCORD_FILESIZE = 8 * 1024 * 1024  # 8MB
 def upload_image_to_discord(image_data, filename="image.jpg", display_name="unknown"):
     if not DISCORD_WEBHOOK_URL:
         print("⚠️ DISCORD_WEBHOOK_URL not set")
+        return
+
+    if len(image_data) > MAX_DISCORD_FILESIZE:
+        content = f"🖼️ 來自 **{display_name}** 的圖片太大拉~ (超過 8MB 限制)"
+        response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
+        if response.status_code != 204:
+            print(f"⚠️ Discord text post failed: {response.status_code}")
         return
 
     files = {
