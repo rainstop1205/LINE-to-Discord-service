@@ -26,7 +26,7 @@ by 魷魚
 ├── cloudbuild.yaml # GCP Cloud Build 自動部署設定檔
 └── README.md # 你現在看的這個檔
  ```
- 
+
 ---
 
 ## ☁️ 部署方式（使用 Google Cloud Run）
@@ -59,9 +59,9 @@ https://line-discord-bot-xxxxx.a.run.app/callback
 
 
 ### 🛠️ TODO
-✅ 文字訊息同步
-✅ 圖片同步
-✅ 顯示 LINE 暱稱
-✅ 支援貼圖同步
-✅ 支援影片(<8MB)
-[ ] LINE ➜ 多個 Discord 頻道自動分類
+- ✅ 文字訊息同步
+- ✅ 圖片同步
+- ✅ 顯示 LINE 暱稱
+- ✅ 支援貼圖同步
+- ✅ 支援影片(<8MB)
+- [ ] LINE ➜ 多個 Discord 頻道自動分類
