@@ -1,7 +1,7 @@
 # 🌈 LINE to Discord Relay Bot
 
-用 Python + Flask + Google Cloud Run 架設的超簡易同步工具，  
-📱 LINE 群組訊息 ➜ ⛓️ 轉送到 Discord 頻道！支援文字、圖片、貼圖（支援中）！
+用 Python + Flask + Google Cloud Run 架設的超簡易訊息同步工具，  
+📱 LINE 群組訊息 ➜ ⛓️ 轉送到 Discord 頻道！支援文字、圖片、貼圖、影片！（支援中）
 
 ---
 
@@ -32,8 +32,8 @@
 ### 📋 前置準備
 
 1. 已安裝並登入好 `gcloud CLI`
-2. 有 GCP 專案、啟用 Billing、啟用 Cloud Run
-3. 有 Docker 安裝（本機 build 用）
+2. 有 GCP 專案、啟用 Cloud Run
+3. 有安裝 Docker（想在本機 build 的話）
 4. 有 LINE Messaging API 的 Channel（取得 Access Token、Channel Secret）
 5. 建好 Discord Webhook 並複製網址
 
@@ -51,6 +51,6 @@ https://line-discord-bot-xxxxx.a.run.app/callback
 ```
 
 ### 💬 使用說明
-把機器人邀請進你 LINE 群組
+把機器人加入想要同步訊息的 LINE 群組
 
 傳送訊息(含emoji)/圖片/影片 ➜ Discord 頻道同步更新！
