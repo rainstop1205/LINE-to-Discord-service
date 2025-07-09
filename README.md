@@ -2,18 +2,19 @@
 
 by 魷魚
 
-用 Python + Flask + Google Cloud Run 架設的超簡易訊息同步工具，
+用 Python + Flask + Google Cloud Run 架設的超簡易訊息同步工具
+
 📱 LINE 群組訊息 ➜ ⛓️ 轉送到 Discord 頻道！支援文字、圖片、貼圖、影片！（支援中）
 
 ---
 
 ## 🚀 功能介紹
 
-- ✅ 接收 LINE 群組中的訊息（文字、圖片）
-- ✅ 自動上傳到指定 Discord 頻道
-- ✅ 顯示送出者的暱稱（不是 userId）
-- ✅ 完全 serverless：用 Google Cloud Run 永久免費跑起來
-- 🔐 使用環境變數管理 token，安全又彈性
+- 接收 LINE 群組中的訊息（文字、圖片）
+- 自動上傳到指定 Discord 頻道
+- 顯示送出者的暱稱（不是 userId）
+- 完全 serverless：用 Google Cloud Run 永久免費跑起來
+- 使用環境變數管理 token，安全又彈性
 
 ---
 
@@ -59,9 +60,9 @@ https://line-discord-bot-xxxxx.a.run.app/callback
 
 
 ### 🛠️ TODO
-- [x] 文字訊息同步
-- [x] 圖片同步
-- [x] 顯示 LINE 暱稱
-- [x] 支援貼圖同步
-- [x] 支援影片（大檔案另議）
+- ✅ 文字訊息同步
+- ✅ 圖片同步
+- ✅ 顯示 LINE 暱稱
+- ✅ 支援貼圖同步
+- ✅ 支援影片(<8MB)
 - [ ] LINE ➜ 多個 Discord 頻道自動分類
