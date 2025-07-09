@@ -95,7 +95,7 @@ def upload_image_to_discord(image_data, filename="image.jpg", display_name="unkn
         return
 
     if len(image_data) > MAX_DISCORD_FILESIZE:
-        content = f"🖼️ **{display_name}** 傳的圖片太大啦~ (超過 8MB 限制)"
+        content = f"👤 {display_name}：圖片🖼️太大啦~ (超過 8MB 限制)"
         response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
         if response.status_code != 204:
             print(f"⚠️ Discord text post failed: {response.status_code}")
@@ -105,7 +105,7 @@ def upload_image_to_discord(image_data, filename="image.jpg", display_name="unkn
         "file": (filename, image_data)
     }
     payload = {
-        "content": f"🖼️ **{display_name}** 傳了一張圖片"
+        "content": f"👤 {display_name}：圖片🖼️"
     }
     response = requests.post(DISCORD_WEBHOOK_URL, data=payload, files=files)
     if response.status_code not in [200, 204]:
@@ -118,7 +118,7 @@ def send_sticker_to_discord(sticker_id, display_name="unknown"):
 
     image_url = f"https://stickershop.line-scdn.net/stickershop/v1/sticker/{sticker_id}/ANDROID/sticker.png"
     payload = {
-        "content": f"🧸 **{display_name}** 傳了一張貼圖",
+        "content": f"👤 {display_name}：貼圖🧸",
         "embeds": [
             {
                 "image": {"url": image_url}
@@ -147,7 +147,7 @@ def upload_video_to_discord(video_data, filename="video.mp4", display_name="unkn
         return
 
     if len(video_data) > MAX_DISCORD_FILESIZE:
-        content = f"🎥 **{display_name}** 傳的影片太大啦~ (超過 8MB 限制)"
+        content = f"👤 {display_name}：影片🎥太大啦~ (超過 8MB 限制)"
         response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
         if response.status_code not in [200, 204]:
             print(f"⚠️ Discord video notice failed: {response.status_code}")
@@ -157,7 +157,7 @@ def upload_video_to_discord(video_data, filename="video.mp4", display_name="unkn
         "file": (filename, video_data)
     }
     payload = {
-        "content": f"🎥 **{display_name}** 傳了一個影片"
+        "content": f"👤 {display_name}：影片🎥"
     }
     response = requests.post(DISCORD_WEBHOOK_URL, data=payload, files=files)
     if response.status_code not in [200, 204]:

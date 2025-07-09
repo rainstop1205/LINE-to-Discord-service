@@ -1,6 +1,8 @@
 # 🌈 LINE to Discord Relay Bot
 
-用 Python + Flask + Google Cloud Run 架設的超簡易訊息同步工具，  
+by 魷魚
+
+用 Python + Flask + Google Cloud Run 架設的超簡易訊息同步工具，
 📱 LINE 群組訊息 ➜ ⛓️ 轉送到 Discord 頻道！支援文字、圖片、貼圖、影片！（支援中）
 
 ---
