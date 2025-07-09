@@ -54,3 +54,12 @@ https://line-discord-bot-xxxxx.a.run.app/callback
 把機器人加入想要同步訊息的 LINE 群組
 
 傳送訊息(含emoji)/圖片/影片 ➜ Discord 頻道同步更新！
+
+
+### 🛠️ TODO
+- [x] 文字訊息同步
+- [x] 圖片同步
+- [x] 顯示 LINE 暱稱
+- [x] 支援貼圖同步
+- [x] 支援影片（大檔案另議）
+- [ ] LINE ➜ 多個 Discord 頻道自動分類
