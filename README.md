@@ -19,13 +19,14 @@ by 魷魚
 ---
 
 ## 📦 專案架構
-.
+ ```
 ├── app.py # 主程式：處理 LINE webhook 並轉發至 Discord
 ├── requirements.txt # 相依套件（Flask, requests）
 ├── Dockerfile # 打包部署用
 ├── cloudbuild.yaml # GCP Cloud Build 自動部署設定檔
 └── README.md # 你現在看的這個檔
-
+ ```
+ 
 ---
 
 ## ☁️ 部署方式（使用 Google Cloud Run）
