@@ -2,6 +2,7 @@ from flask import Flask, request
 import requests
 import json
 import os
+from user_whitelist import user_prefix_whitelist
 
 app = Flask(__name__)
 
@@ -53,6 +54,15 @@ def get_user_display_name(user_id):
     if user_id in user_cache:
         return user_cache[user_id]
 
+    prefix = user_id[:6]
+
+    # 檢查白名單
+    if prefix in user_prefix_whitelist:
+        display_name = user_prefix_whitelist[prefix]
+        user_cache[user_id] = display_name
+        return display_name
+
+    # call LINE API 取得 displayName
     headers = {
         "Authorization": f"Bearer {LINE_CHANNEL_ACCESS_TOKEN}"
     }
@@ -60,12 +70,13 @@ def get_user_display_name(user_id):
     resp = requests.get(url, headers=headers)
     if resp.status_code == 200:
         profile = resp.json()
-        display_name = profile.get("displayName") or f"(unknown user {user_id[:6]})"
+        display_name = profile.get("displayName") or f"(unknown user {prefix})"
         user_cache[user_id] = display_name
         return display_name
-    else:
-        print(f"⚠️ Failed to get displayName for {user_id}: {resp.status_code}")
-        return f"(user {user_id[:6]})"
+
+    # 只顯示id前六碼
+    print(f"⚠️ Failed to get displayName for {user_id}: {resp.status_code}")
+    return f"(user {prefix})"
 
 def send_to_discord(content):
     if not DISCORD_WEBHOOK_URL:
