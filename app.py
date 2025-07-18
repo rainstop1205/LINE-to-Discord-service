@@ -25,11 +25,11 @@ def callback():
         
         # 👇抓 group/user 及對應的 ID
         if source_type == "group":
-            print(f"🟢 收到來自群組的訊息，groupId：{source.get('groupId')}")
+            print(f"🟢 收到來自群組的訊息，groupId：{source.get('groupId')}", flush=True)
         elif source_type == "room":
-            print(f"🟣 收到來自多人聊天室的訊息，roomId：{source.get('roomId')}")
+            print(f"🟣 收到來自多人聊天室的訊息，roomId：{source.get('roomId')}", flush=True)
         elif source_type == "user":
-            print(f"🔵 收到來自單一使用者的訊息，userId：{source.get('userId')}")
+            print(f"🔵 收到來自單一使用者的訊息，userId：{source.get('userId')}", flush=True)
             
         if event["type"] == "message":
             msg = event["message"]
@@ -86,17 +86,17 @@ def get_user_display_name(user_id):
         return display_name
 
     # 只顯示id前六碼
-    print(f"⚠️ Failed to get displayName for {user_id}: {resp.status_code}")
+    print(f"⚠️ Failed to get displayName for {user_id}: {resp.status_code}", flush=True)
     return f"(user {prefix})"
 
 def send_to_discord(content):
     if not DISCORD_WEBHOOK_URL:
-        print("⚠️ DISCORD_WEBHOOK_URL not set")
+        print("⚠️ DISCORD_WEBHOOK_URL not set", flush=True)
         return
 
     response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
     if response.status_code != 204:
-        print(f"⚠️ Discord text post failed: {response.status_code}")
+        print(f"⚠️ Discord text post failed: {response.status_code}", flush=True)
 
 def download_line_image(message_id):
     headers = {
@@ -107,20 +107,20 @@ def download_line_image(message_id):
     if response.status_code == 200:
         return response.content
     else:
-        print(f"⚠️ Failed to download image: {response.status_code}")
+        print(f"⚠️ Failed to download image: {response.status_code}", flush=True)
         return None
 
 MAX_DISCORD_FILESIZE = 8 * 1024 * 1024  # 8MB
 def upload_image_to_discord(image_data, filename="image.jpg", display_name="unknown"):
     if not DISCORD_WEBHOOK_URL:
-        print("⚠️ DISCORD_WEBHOOK_URL not set")
+        print("⚠️ DISCORD_WEBHOOK_URL not set", flush=True)
         return
 
     if len(image_data) > MAX_DISCORD_FILESIZE:
         content = f"👤 {display_name}：圖片🖼️太大啦~ (超過 8MB 限制)"
         response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
         if response.status_code != 204:
-            print(f"⚠️ Discord text post failed: {response.status_code}")
+            print(f"⚠️ Discord text post failed: {response.status_code}", flush=True)
         return
 
     files = {
@@ -131,11 +131,11 @@ def upload_image_to_discord(image_data, filename="image.jpg", display_name="unkn
     }
     response = requests.post(DISCORD_WEBHOOK_URL, data=payload, files=files)
     if response.status_code not in [200, 204]:
-        print(f"⚠️ Discord image upload failed: {response.status_code}")
+        print(f"⚠️ Discord image upload failed: {response.status_code}", flush=True)
 
 def send_sticker_to_discord(sticker_id, display_name="unknown"):
     if not DISCORD_WEBHOOK_URL:
-        print("⚠️ DISCORD_WEBHOOK_URL not set")
+        print("⚠️ DISCORD_WEBHOOK_URL not set", flush=True)
         return
 
     image_url = f"https://stickershop.line-scdn.net/stickershop/v1/sticker/{sticker_id}/ANDROID/sticker.png"
@@ -149,7 +149,7 @@ def send_sticker_to_discord(sticker_id, display_name="unknown"):
     }
     response = requests.post(DISCORD_WEBHOOK_URL, json=payload)
     if response.status_code not in [200, 204]:
-        print(f"⚠️ Discord sticker embed failed: {response.status_code}")
+        print(f"⚠️ Discord sticker embed failed: {response.status_code}", flush=True)
 
 def download_line_video(message_id):
     headers = {
@@ -160,19 +160,19 @@ def download_line_video(message_id):
     if response.status_code == 200:
         return response.content
     else:
-        print(f"⚠️ Failed to download video: {response.status_code}")
+        print(f"⚠️ Failed to download video: {response.status_code}", flush=True)
         return None
 
 def upload_video_to_discord(video_data, filename="video.mp4", display_name="unknown"):
     if not DISCORD_WEBHOOK_URL:
-        print("⚠️ DISCORD_WEBHOOK_URL not set")
+        print("⚠️ DISCORD_WEBHOOK_URL not set", flush=True)
         return
 
     if len(video_data) > MAX_DISCORD_FILESIZE:
         content = f"👤 {display_name}：影片🎥太大啦~ (超過 8MB 限制)"
         response = requests.post(DISCORD_WEBHOOK_URL, json={"content": content})
         if response.status_code not in [200, 204]:
-            print(f"⚠️ Discord video notice failed: {response.status_code}")
+            print(f"⚠️ Discord video notice failed: {response.status_code}", flush=True)
         return
 
     files = {
@@ -183,7 +183,7 @@ def upload_video_to_discord(video_data, filename="video.mp4", display_name="unkn
     }
     response = requests.post(DISCORD_WEBHOOK_URL, data=payload, files=files)
     if response.status_code not in [200, 204]:
-        print(f"⚠️ Discord video upload failed: {response.status_code}")
+        print(f"⚠️ Discord video upload failed: {response.status_code}", flush=True)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
