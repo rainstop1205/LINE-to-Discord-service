@@ -20,16 +20,15 @@ def callback():
     events = body.get("events", [])
 
     for event in events:
-        source = event.get("source", {})
-        source_type = source.get("type")
-        
-        # 👇抓 group/user 及對應的 ID
-        if source_type == "group":
-            print(f"🟢 收到來自群組的訊息，groupId：{source.get('groupId')}", flush=True)
-        elif source_type == "room":
-            print(f"🟣 收到來自多人聊天室的訊息，roomId：{source.get('roomId')}", flush=True)
-        elif source_type == "user":
-            print(f"🔵 收到來自單一使用者的訊息，userId：{source.get('userId')}", flush=True)
+        # source = event.get("source", {})
+        # source_type = source.get("type")
+        # # 👇抓 group/user 及對應的 ID
+        # if source_type == "group":
+        #     print(f"🟢 收到來自群組的訊息，groupId：{source.get('groupId')}", flush=True)
+        # elif source_type == "room":
+        #     print(f"🟣 收到來自多人聊天室的訊息，roomId：{source.get('roomId')}", flush=True)
+        # elif source_type == "user":
+        #     print(f"🔵 收到來自單一使用者的訊息，userId：{source.get('userId')}", flush=True)
             
         if event["type"] == "message":
             msg = event["message"]
