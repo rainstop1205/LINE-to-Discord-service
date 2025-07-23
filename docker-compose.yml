@@ -1,6 +1,7 @@
 services:
   line-to-discord-service:
     build: .
+    image: line-to-discord-service:latest # name:tag
     ports:
       - "443:8080" # LINE webhook 預設打 443，映射容器內部的 8080
     container_name: line-to-discord-service
