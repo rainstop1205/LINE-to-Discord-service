@@ -112,15 +112,15 @@ def callback():
     events = body.get("events", [])
 
     for event in events:
-        # source = event.get("source", {})
-        # source_type = source.get("type")
-        # # 👇抓 group/user 對應的 ID
-        # if source_type == "group":
-        #     logger.info(f"🟢 收到來自group的訊息，groupId：{source.get('groupId')}")
-        # elif source_type == "room":
-        #     logger.info(f"🟣 收到來自room的訊息，roomId：{source.get('roomId')}")
-        # elif source_type == "user":
-        #     logger.info(f"🔵 收到來自user的訊息，userId：{source.get('userId')}")
+        source = event.get("source", {})
+        source_type = source.get("type")
+        # 👇抓 group/room/user 對應的 ID
+        if source_type == "group":
+            logger.info(f"🟢 收到來自group的訊息，groupId：{source.get('groupId')}")
+        elif source_type == "room":
+            logger.info(f"🟣 收到來自room的訊息，roomId：{source.get('roomId')}")
+        elif source_type == "user":
+            logger.info(f"🔵 收到來自user的訊息，userId：{source.get('userId')}")
         
         if event.get("type") != "message":
             continue
